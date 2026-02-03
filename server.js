@@ -8,6 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const DATA_PATH = path.join(__dirname, 'data', 'reports.json');
+const UPLOAD_DIR = path.join(__dirname, 'public', 'uploads');
+if (!fs.existsSync(UPLOAD_DIR)) {
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+}
 const STATUS_ALIASES = {
   Wait: 'Menunggu',
   Waiting: 'Menunggu',
@@ -54,7 +58,7 @@ function requireAuth(req, res, next) {
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.join(__dirname, 'public', 'uploads'));
+    cb(null, UPLOAD_DIR);
   },
   filename: (req, file, cb) => {
     const unique = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
@@ -67,8 +71,10 @@ const upload = multer({
   storage,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    const allowed = ['image/jpeg', 'image/png'];
-    if (allowed.includes(file.mimetype)) {
+    const allowedMime = ['image/jpeg', 'image/png', 'image/jpg'];
+    const allowedExt = ['.jpg', '.jpeg', '.png'];
+    const ext = path.extname(file.originalname || '').toLowerCase();
+    if (allowedMime.includes(file.mimetype) || allowedExt.includes(ext)) {
       cb(null, true);
     } else {
       cb(new Error('Format file tidak didukung.'));
