@@ -80,17 +80,10 @@
       dropInner.innerHTML = defaultMarkup;
     };
 
-    photoInput.addEventListener('click', () => {
-      // allow reselecting the same file
-      photoInput.value = '';
-    });
-
     photoInput.addEventListener('change', () => {
       const file = photoInput.files && photoInput.files[0];
       if (file) {
         renderPreview(file);
-      } else {
-        resetPreview();
       }
     });
   }
