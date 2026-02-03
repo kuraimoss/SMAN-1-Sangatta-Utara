@@ -309,14 +309,10 @@ main {
 }
 
 .category-card .emoji {
-  font-size: 20px;
-  margin-bottom: 10px;
-  line-height: 1;
-}
-
-.category-card .emoji img {
   width: 22px;
   height: 22px;
+  margin-bottom: 10px;
+  display: block;
 }
 
 .category-card h4 {
@@ -521,14 +517,9 @@ main {
 }
 
 .tile .emoji {
-  font-size: 20px;
-  display: block;
-  line-height: 1;
-}
-
-.tile .emoji img {
   width: 20px;
   height: 20px;
+  display: block;
 }
 
 textarea,

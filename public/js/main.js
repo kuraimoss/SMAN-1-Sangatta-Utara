@@ -46,6 +46,7 @@
   if (photoInput) {
     const dropzone = photoInput.closest('.dropzone');
     const dropInner = dropzone ? dropzone.querySelector('.dropzone-inner') : null;
+    const defaultMarkup = dropInner ? dropInner.innerHTML : '';
 
     const renderPreview = (file) => {
       if (!dropzone || !dropInner) return;
@@ -73,10 +74,23 @@
       reader.readAsDataURL(file);
     };
 
+    const resetPreview = () => {
+      if (!dropzone || !dropInner) return;
+      dropzone.classList.remove('has-preview');
+      dropInner.innerHTML = defaultMarkup;
+    };
+
+    photoInput.addEventListener('click', () => {
+      // allow reselecting the same file
+      photoInput.value = '';
+    });
+
     photoInput.addEventListener('change', () => {
       const file = photoInput.files && photoInput.files[0];
       if (file) {
         renderPreview(file);
+      } else {
+        resetPreview();
       }
     });
   }
