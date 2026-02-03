@@ -47,6 +47,7 @@
     const dropzone = photoInput.closest('.dropzone');
     const dropInner = dropzone ? dropzone.querySelector('.dropzone-inner') : null;
     const defaultMarkup = dropInner ? dropInner.innerHTML : '';
+    let cachedFile = null;
 
     const renderPreview = (file) => {
       if (!dropzone || !dropInner) return;
@@ -83,8 +84,35 @@
     photoInput.addEventListener('change', () => {
       const file = photoInput.files && photoInput.files[0];
       if (file) {
+        cachedFile = file;
         renderPreview(file);
       }
     });
+
+    const form = photoInput.closest('form');
+    if (form) {
+      form.addEventListener('submit', async (event) => {
+        const hasFile = photoInput.files && photoInput.files.length > 0;
+        if (hasFile || !cachedFile) return;
+
+        event.preventDefault();
+        const formData = new FormData(form);
+        formData.set('photo', cachedFile, cachedFile.name);
+
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: formData });
+          if (res.redirected) {
+            window.location.href = res.url;
+            return;
+          }
+          const html = await res.text();
+          document.open();
+          document.write(html);
+          document.close();
+        } catch (err) {
+          form.submit();
+        }
+      });
+    }
   }
 })();
