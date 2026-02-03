@@ -6,7 +6,7 @@
     "photoPath": null,
     "isAnonymous": true,
     "reporterName": "Anonim",
-    "status": "Selesai",
+    "status": "Menunggu",
     "createdAt": "2026-02-03T13:25:45.726Z"
   },
   {
@@ -16,7 +16,7 @@
     "photoPath": null,
     "isAnonymous": true,
     "reporterName": "Anonim",
-    "status": "Selesai",
+    "status": "Menunggu",
     "createdAt": "2026-02-03T12:56:17.249Z"
   },
   {
@@ -36,7 +36,7 @@
     "photoPath": null,
     "isAnonymous": true,
     "reporterName": "Anonim",
-    "status": "Menunggu",
+    "status": "Selesai",
     "createdAt": "2026-02-03T12:53:33.067Z"
   }
 ]

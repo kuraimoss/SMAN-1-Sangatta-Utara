@@ -42,6 +42,16 @@
               badge.classList.add(lower);
               badge.textContent = status;
             }
+
+            const filterSelect = document.querySelector(
+              '.filter-bar select[name="status"]'
+            );
+            if (filterSelect) {
+              const activeFilter = filterSelect.value;
+              if (activeFilter !== 'Semua Status' && activeFilter !== status) {
+                card.remove();
+              }
+            }
           }
         } catch (err) {
           if (form) {
