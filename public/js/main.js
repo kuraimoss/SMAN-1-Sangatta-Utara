@@ -41,4 +41,43 @@
     anonymous.addEventListener('change', toggleName);
     toggleName();
   }
+
+  const photoInput = document.getElementById('photo');
+  if (photoInput) {
+    const dropzone = photoInput.closest('.dropzone');
+    const dropInner = dropzone ? dropzone.querySelector('.dropzone-inner') : null;
+
+    const renderPreview = (file) => {
+      if (!dropzone || !dropInner) return;
+      dropzone.classList.add('has-preview');
+      dropInner.innerHTML = '';
+
+      const previewWrap = document.createElement('div');
+      previewWrap.className = 'preview-wrap';
+
+      const img = document.createElement('img');
+      img.alt = 'Preview foto';
+      previewWrap.appendChild(img);
+
+      const name = document.createElement('span');
+      name.className = 'preview-name';
+      name.textContent = file.name;
+      previewWrap.appendChild(name);
+
+      dropInner.appendChild(previewWrap);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    };
+
+    photoInput.addEventListener('change', () => {
+      const file = photoInput.files && photoInput.files[0];
+      if (file) {
+        renderPreview(file);
+      }
+    });
+  }
 })();
