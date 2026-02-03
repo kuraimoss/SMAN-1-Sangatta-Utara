@@ -79,10 +79,10 @@
               </svg>
             </div>
             <select name="status" onchange="this.form.submit()">
-              <option <%= status === 'Semua Status' ? 'selected' : '' %>>Semua Status</option>
-              <option <%= status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
-              <option <%= status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
-              <option <%= status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
+              <option value="Semua Status" <%= status === 'Semua Status' ? 'selected' : '' %>>Semua Status</option>
+              <option value="Menunggu" <%= status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
+              <option value="Diproses" <%= status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
+              <option value="Selesai" <%= status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
             </select>
           </div>
         </form>
@@ -129,9 +129,9 @@
                 </a>
                 <form method="POST" action="/admin/reports/<%= report.id %>/status">
                   <select name="status" class="report-status-select" data-report-id="<%= report.id %>">
-                    <option <%= report.status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
-                    <option <%= report.status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
-                    <option <%= report.status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
+                    <option value="Menunggu" <%= report.status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
+                    <option value="Diproses" <%= report.status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
+                    <option value="Selesai" <%= report.status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
                   </select>
                 </form>
               </div>

@@ -40,9 +40,9 @@
           <form class="detail-status" method="POST" action="/admin/reports/<%= report.id %>/status">
             <label>Ubah Status</label>
             <select name="status" onchange="this.form.submit()">
-              <option <%= report.status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
-              <option <%= report.status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
-              <option <%= report.status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
+              <option value="Menunggu" <%= report.status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
+              <option value="Diproses" <%= report.status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
+              <option value="Selesai" <%= report.status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
             </select>
           </form>
         </div>

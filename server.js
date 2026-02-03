@@ -8,6 +8,19 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const DATA_PATH = path.join(__dirname, 'data', 'reports.json');
+const STATUS_ALIASES = {
+  Wait: 'Menunggu',
+  Waiting: 'Menunggu',
+  Processed: 'Diproses',
+  Processing: 'Diproses',
+  Finished: 'Selesai',
+  Completed: 'Selesai',
+  Done: 'Selesai'
+};
+
+function normalizeStatus(status) {
+  return STATUS_ALIASES[status] || status;
+}
 
 function readReports() {
   try {
@@ -161,6 +174,17 @@ app.post('/admin/login', (req, res) => {
 
 app.get('/admin', requireAuth, (req, res) => {
   const reports = readReports();
+  let normalized = false;
+  reports.forEach((report) => {
+    const fixed = normalizeStatus(report.status);
+    if (fixed !== report.status) {
+      report.status = fixed;
+      normalized = true;
+    }
+  });
+  if (normalized) {
+    writeReports(reports);
+  }
   const search = (req.query.search || '').toLowerCase();
   const status = req.query.status || 'Semua Status';
 
@@ -196,7 +220,7 @@ app.post('/admin/reports/:id/status', requireAuth, (req, res) => {
   const reports = readReports();
   const report = reports.find((item) => item.id === req.params.id);
   if (report) {
-    report.status = req.body.status;
+    report.status = normalizeStatus(req.body.status);
     writeReports(reports);
   }
   const wantsJson =
@@ -218,6 +242,11 @@ app.get('/admin/reports/:id', requireAuth, (req, res) => {
   const report = reports.find((item) => item.id === req.params.id);
   if (!report) {
     return res.redirect('/admin');
+  }
+  const fixed = normalizeStatus(report.status);
+  if (fixed !== report.status) {
+    report.status = fixed;
+    writeReports(reports);
   }
   return res.render('admin-detail', { report, formatDateId });
 });
