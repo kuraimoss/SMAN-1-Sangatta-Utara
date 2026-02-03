@@ -16,7 +16,7 @@
           <div class="stat-card accent-blue">
             <div>
               <p>Total Laporan</p>
-              <h3><%= stats.total %></h3>
+              <h3 data-stat="total"><%= stats.total %></h3>
             </div>
             <div class="stat-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -28,7 +28,7 @@
           <div class="stat-card accent-yellow">
             <div>
               <p>Menunggu</p>
-              <h3><%= stats.menunggu %></h3>
+              <h3 data-stat="menunggu"><%= stats.menunggu %></h3>
             </div>
             <div class="stat-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -40,7 +40,7 @@
           <div class="stat-card accent-blue-soft">
             <div>
               <p>Diproses</p>
-              <h3><%= stats.diproses %></h3>
+              <h3 data-stat="diproses"><%= stats.diproses %></h3>
             </div>
             <div class="stat-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -53,7 +53,7 @@
           <div class="stat-card accent-green">
             <div>
               <p>Selesai</p>
-              <h3><%= stats.selesai %></h3>
+              <h3 data-stat="selesai"><%= stats.selesai %></h3>
             </div>
             <div class="stat-icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -128,7 +128,7 @@
                   Detail
                 </a>
                 <form method="POST" action="/admin/reports/<%= report.id %>/status">
-                  <select name="status" onchange="this.form.submit()">
+                  <select name="status" class="report-status-select" data-report-id="<%= report.id %>">
                     <option <%= report.status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
                     <option <%= report.status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
                     <option <%= report.status === 'Selesai' ? 'selected' : '' %>>Selesai</option>

@@ -67,6 +67,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
@@ -198,7 +199,18 @@ app.post('/admin/reports/:id/status', requireAuth, (req, res) => {
     report.status = req.body.status;
     writeReports(reports);
   }
-  res.redirect('back');
+  const wantsJson =
+    req.headers.accept && req.headers.accept.includes('application/json');
+  if (wantsJson) {
+    const stats = {
+      total: reports.length,
+      menunggu: reports.filter((r) => r.status === 'Menunggu').length,
+      diproses: reports.filter((r) => r.status === 'Diproses').length,
+      selesai: reports.filter((r) => r.status === 'Selesai').length
+    };
+    return res.json({ ok: true, stats, status: report ? report.status : null });
+  }
+  return res.redirect('back');
 });
 
 app.get('/admin/reports/:id', requireAuth, (req, res) => {
