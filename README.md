@@ -3,7 +3,7 @@
 Website pelaporan fasilitas sekolah berbasis Node.js + Express + EJS, dengan penyimpanan data JSON dan upload foto.
 
 ## Prasyarat
-- Node.js 18+ (disarankan)
+- Node.js (versi LTS disarankan)
 - npm
 
 ## Instalasi
