@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container navbar-inner">
+        <div class="logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 10.5L12 5l8 5.5V20a1 1 0 0 1-1 1h-5v-5H10v5H5a1 1 0 0 1-1-1v-9.5z" fill="#FFFFFF" />
+              <path d="M9 10h2v2H9zm4 0h2v2h-2z" fill="#0B57DE" opacity="0.4" />
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">SMAN 1 Sangatta Utara</span>
+            <span class="logo-subtitle">Sistem Pelaporan Fasilitas</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="page">
+      <div class="container login-container">
+        <div class="page-icon teal">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 10.5L12 5l8 5.5V20a1 1 0 0 1-1 1h-5v-5H10v5H5a1 1 0 0 1-1-1v-9.5z" fill="#FFFFFF" />
+          </svg>
+        </div>
+        <h1>Login Admin/Guru</h1>
+        <p class="page-subtitle">Masuk untuk mengakses dashboard pelaporan</p>
+
+        <form class="card login-card" method="POST" action="/admin/login">
+          <% if (error) { %>
+            <div class="form-error"><%= error %></div>
+          <% } %>
+          <div class="form-group">
+            <label>Username</label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" stroke="#94A3B8" stroke-width="1.8" fill="none" />
+                <path d="M4 20c1.5-3.5 6-4 8-4s6.5.5 8 4" stroke="#94A3B8" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              </svg>
+              <input type="text" name="username" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="9" rx="2" stroke="#94A3B8" stroke-width="1.8" fill="none" />
+                <path d="M8 11V8a4 4 0 1 1 8 0v3" stroke="#94A3B8" stroke-width="1.8" fill="none" />
+              </svg>
+              <input type="password" name="password" required />
+            </div>
+          </div>
+          <button class="btn btn-gradient" type="submit">Login</button>
+          <a class="btn btn-outline" href="/">Kembali ke Beranda</a>
+        </form>
+
+        <div class="demo-box">
+          <div class="demo-title">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="#F59E0B" stroke-width="2" fill="none" />
+              <path d="M12 8v4" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" />
+              <circle cx="12" cy="16" r="1" fill="#F59E0B" />
+            </svg>
+            Demo Credentials:
+          </div>
+          <p>Username: admin</p>
+          <p>Password: admin123</p>
+        </div>
+
+        <p class="small-text">Akses ini khusus untuk guru dan admin sekolah</p>
+      </div>
+    </main>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

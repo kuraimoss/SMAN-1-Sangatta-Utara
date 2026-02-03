@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+    <%- include('partials/navbar-public') %>
+    <main class="page">
+      <div class="container">
+        <div class="card success-card">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="#16A34A" />
+              <path d="M8 12l3 3 5-6" stroke="#FFFFFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <h1>Laporan Berhasil Dikirim!</h1>
+          <p>
+            Terima kasih telah melaporkan. Laporan Anda telah<br />
+            diterima dan akan segera ditinjau oleh pihak sekolah.
+          </p>
+          <div class="info-box small">
+            <strong>Langkah Selanjutnya:</strong>
+            <ul>
+              <li>Tim fasilitas akan meninjau laporan Anda</li>
+              <li>Perbaikan akan dilakukan sesuai prioritas</li>
+              <li>Status dapat dipantau melalui dashboard admin</li>
+            </ul>
+          </div>
+          <div class="button-row">
+            <a class="btn btn-outline" href="/">
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 10.5L12 5l8 5.5V20a1 1 0 0 1-1 1h-5v-5H10v5H5a1 1 0 0 1-1-1v-9.5z" fill="none" stroke="#475569" stroke-width="1.8" />
+                </svg>
+              </span>
+              Kembali ke Beranda
+            </a>
+            <a class="btn btn-gradient" href="/report">
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="#FFFFFF" />
+                  <path d="M14 2v6h6" fill="#FFFFFF" />
+                </svg>
+              </span>
+              Buat Laporan Lagi
+            </a>
+          </div>
+          <p class="small-text">Laporan Anda sangat membantu dalam menjaga kualitas fasilitas sekolah</p>
+        </div>
+      </div>
+    </main>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

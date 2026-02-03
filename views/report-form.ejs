@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+    <%- include('partials/navbar-public') %>
+    <main class="page"> 
+      <section class="form-page">
+        <div class="container form-container">
+          <div class="page-icon teal">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="#FFFFFF" />
+              <path d="M14 2v6h6" fill="#FFFFFF" />
+            </svg>
+          </div>
+          <h1>Buat Laporan Kerusakan</h1>
+          <p class="page-subtitle">Isi form di bawah ini untuk melaporkan kerusakan fasilitas sekolah</p>
+
+          <form class="card form-card" method="POST" action="/report" enctype="multipart/form-data">
+            <% if (error) { %>
+              <div class="form-error"><%= error %></div>
+            <% } %>
+            <div class="form-group">
+              <label>Kategori Kerusakan <span>*</span></label>
+              <div class="category-tiles" id="categoryTiles">
+                <button type="button" class="tile" data-value="Ruang Kelas">
+                  <span class="emoji">🏫</span>
+                  Ruang Kelas
+                </button>
+                <button type="button" class="tile" data-value="Toilet/WC">
+                  <span class="emoji">🚽</span>
+                  Toilet/WC
+                </button>
+                <button type="button" class="tile" data-value="Meja & Kursi">
+                  <span class="emoji">🪑</span>
+                  Meja &amp; Kursi
+                </button>
+                <button type="button" class="tile" data-value="Listrik">
+                  <span class="emoji">💡</span>
+                  Listrik
+                </button>
+                <button type="button" class="tile" data-value="Laboratorium">
+                  <span class="emoji">🔬</span>
+                  Laboratorium
+                </button>
+                <button type="button" class="tile" data-value="Perpustakaan">
+                  <span class="emoji">📚</span>
+                  Perpustakaan
+                </button>
+                <button type="button" class="tile" data-value="Lapangan">
+                  <span class="emoji">⚽</span>
+                  Lapangan
+                </button>
+                <button type="button" class="tile" data-value="Lainnya">
+                  <span class="emoji">🏢</span>
+                  Lainnya
+                </button>
+              </div>
+              <input type="hidden" name="category" id="categoryInput" value="<%= form.category || '' %>" />
+            </div>
+
+            <div class="form-group">
+              <label>Deskripsi Masalah <span>*</span></label>
+              <textarea name="description" id="description" rows="5" placeholder="Jelaskan kerusakan secara detail, misalnya: lokasi kerusakan, kondisi saat ini, dll."><%= form.description || '' %></textarea>
+              <div class="helper-row">
+                <span>Minimal 10 karakter</span>
+                <span id="charCount">0 karakter</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Upload Foto Bukti (Opsional)</label>
+              <label class="dropzone" for="photo">
+                <input type="file" id="photo" name="photo" accept="image/png, image/jpeg" />
+                <div class="dropzone-inner">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 16V8" stroke="#6B7280" stroke-width="2" stroke-linecap="round" />
+                    <path d="M8 12l4-4 4 4" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <rect x="4" y="4" width="16" height="16" rx="3" stroke="#CBD5E1" stroke-width="1.5" fill="none" />
+                  </svg>
+                  <div>
+                    <strong>Klik untuk upload foto</strong>
+                    <span>PNG, JPG (maks. 5MB)</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <div class="checkbox-box">
+              <label class="checkbox-row">
+                <input type="checkbox" id="anonymous" name="isAnonymous" <%= showName ? '' : 'checked' %> />
+                <span>Lapor secara anonim</span>
+              </label>
+              <p>Jika dicentang, identitas Anda tidak akan ditampilkan kepada admin</p>
+              <div id="nameField" class="name-field <%= showName ? 'show' : '' %>">
+                <label>Nama (Opsional)</label>
+                <input type="text" name="reporterName" value="<%= form.reporterName || '' %>" />
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <a class="btn btn-outline" href="/">Batal</a>
+              <button class="btn btn-gradient" type="submit">Kirim Laporan</button>
+            </div>
+          </form>
+
+          <div class="info-box">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="#1A5AFF" stroke-width="2" fill="none" />
+                <path d="M12 10v6" stroke="#1A5AFF" stroke-width="2" stroke-linecap="round" />
+                <circle cx="12" cy="7" r="1" fill="#1A5AFF" />
+              </svg>
+            </div>
+            <div>
+              <strong>Informasi Penting:</strong>
+              <ul>
+                <li>Laporan akan segera ditinjau oleh pihak sekolah</li>
+                <li>Data laporan bersifat privat dan aman</li>
+                <li>Hanya admin/guru yang dapat mengakses laporan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

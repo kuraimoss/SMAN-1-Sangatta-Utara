@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+    <%- include('partials/navbar-public') %>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <h1>
+            Website Pelaporan Fasilitas<br />
+            SMAN 1 Sangatta Utara
+          </h1>
+          <p>
+            Media resmi bagi siswa untuk melaporkan kerusakan fasilitas sekolah dengan mudah,<br />
+            cepat, dan aman
+          </p>
+          <a class="btn btn-light" href="/report">
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="#FFFFFF" />
+                <path d="M14 2v6h6" fill="#FFFFFF" />
+              </svg>
+            </span>
+            Buat Laporan Sekarang
+            <span class="btn-icon-right">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14" stroke="#1A5AFF" stroke-width="2" fill="none" stroke-linecap="round" />
+                <path d="M13 6l6 6-6 6" stroke="#1A5AFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section how">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Cara Menggunakan Sistem Pelaporan</h2>
+            <p>Proses pelaporan yang sederhana dan efektif untuk menjaga fasilitas sekolah tetap<br />dalam kondisi baik</p>
+          </div>
+          <div class="card-grid steps">
+            <div class="step-card step-blue">
+              <div class="step-badge blue">1</div>
+              <h3>Isi Form Laporan</h3>
+              <p>
+                Pilih kategori kerusakan, tulis deskripsi
+                masalah, dan upload foto sebagai bukti.
+                Anda dapat memilih untuk lapor secara
+                anonim atau mencantumkan identitas.
+              </p>
+            </div>
+            <div class="step-card step-green">
+              <div class="step-badge green">2</div>
+              <h3>Kirim Laporan</h3>
+              <p>
+                Setelah form terisi lengkap, klik tombol
+                kirim. Laporan Anda akan langsung masuk
+                ke sistem dan dapat dilihat oleh pihak
+                sekolah.
+              </p>
+            </div>
+            <div class="step-card step-purple">
+              <div class="step-badge purple">3</div>
+              <h3>Pihak Sekolah Menindaklanjuti</h3>
+              <p>
+                Tim fasilitas sekolah akan meninjau dan
+                menindaklanjuti laporan Anda. Status
+                laporan dapat dipantau oleh admin sekolah.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section categories">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Kategori Kerusakan yang Dapat Dilaporkan</h2>
+            <p>Berbagai jenis kerusakan fasilitas yang bisa Anda laporkan</p>
+          </div>
+          <div class="category-grid">
+            <div class="category-card" style="--accent:#467ACD">
+              <div class="emoji">🏫</div>
+              <h4>Ruang Kelas</h4>
+              <p>Kipas angin, AC, papan tulis, proyektor</p>
+            </div>
+            <div class="category-card" style="--accent:#2EAE63">
+              <div class="emoji">🚽</div>
+              <h4>Toilet / WC</h4>
+              <p>Kran air, flush toilet, pintu, lampu</p>
+            </div>
+            <div class="category-card" style="--accent:#DAB040">
+              <div class="emoji">🪑</div>
+              <h4>Meja &amp; Kursi</h4>
+              <p>Meja siswa, kursi, loker yang rusak</p>
+            </div>
+            <div class="category-card" style="--accent:#C74148">
+              <div class="emoji">💡</div>
+              <h4>Listrik</h4>
+              <p>Lampu, stop kontak, saklar listrik</p>
+            </div>
+            <div class="category-card" style="--accent:#A54DED">
+              <div class="emoji">🔬</div>
+              <h4>Laboratorium</h4>
+              <p>Peralatan lab, wastafel, komputer</p>
+            </div>
+            <div class="category-card" style="--accent:#6461EC">
+              <div class="emoji">📚</div>
+              <h4>Perpustakaan</h4>
+              <p>Rak buku, meja baca, AC perpustakaan</p>
+            </div>
+            <div class="category-card" style="--accent:#E43D99">
+              <div class="emoji">⚽</div>
+              <h4>Lapangan</h4>
+              <p>Lapangan olahraga, ring basket, gawang</p>
+            </div>
+            <div class="category-card" style="--accent:#6D717D">
+              <div class="emoji">🏢</div>
+              <h4>Lainnya</h4>
+              <p>Fasilitas lain yang memerlukan perbaikan</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section status-section">
+        <div class="container">
+          <div class="status-box">
+            <h2>Status Laporan</h2>
+            <p>Setiap laporan akan melalui proses penanganan yang terstruktur</p>
+            <div class="status-grid">
+              <div class="status-card">
+                <div class="status-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="#FFFFFF" stroke-width="2" fill="none" />
+                    <path d="M12 7v6l3 2" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <h4>Menunggu</h4>
+                <p>Laporan baru masuk dan menunggu untuk ditinjau oleh tim fasilitas</p>
+              </div>
+              <div class="status-card">
+                <div class="status-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="#FFFFFF" stroke-width="2" fill="none" />
+                    <path d="M12 8v4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+                    <circle cx="12" cy="16" r="1" fill="#FFFFFF" />
+                  </svg>
+                </div>
+                <h4>Diproses</h4>
+                <p>Laporan sedang dalam proses perbaikan oleh pihak terkait</p>
+              </div>
+              <div class="status-card">
+                <div class="status-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" stroke="#FFFFFF" stroke-width="2" fill="none" />
+                    <path d="M8 12l3 3 5-6" stroke="#FFFFFF" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <h4>Selesai</h4>
+                <p>Perbaikan telah selesai dilakukan dan fasilitas dapat digunakan kembali</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="container cta-inner">
+          <h2>Ada Fasilitas yang Rusak?</h2>
+          <p>Jangan ragu untuk melaporkan. Laporan Anda membantu menjaga kenyamanan belajar di sekolah.</p>
+          <a class="btn btn-gradient" href="/report">
+            <span class="btn-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" fill="#FFFFFF" />
+                <path d="M14 2v6h6" fill="#FFFFFF" />
+              </svg>
+            </span>
+            Buat Laporan
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "R1770123377249",
+    "category": "Toilet/WC",
+    "description": "wc sumbat di kamar mandi",
+    "photoPath": null,
+    "isAnonymous": true,
+    "reporterName": "Anonim",
+    "status": "Diproses",
+    "createdAt": "2026-02-03T12:56:17.249Z"
+  },
+  {
+    "id": "R1770123359696",
+    "category": "Ruang Kelas",
+    "description": "lampu mati",
+    "photoPath": null,
+    "isAnonymous": true,
+    "reporterName": "Anonim",
+    "status": "Selesai",
+    "createdAt": "2026-02-03T12:55:59.696Z"
+  },
+  {
+    "id": "R1770123213066",
+    "category": "Ruang Kelas",
+    "description": "pintu patah",
+    "photoPath": null,
+    "isAnonymous": true,
+    "reporterName": "Anonim",
+    "status": "Menunggu",
+    "createdAt": "2026-02-03T12:53:33.067Z"
+  }
+]

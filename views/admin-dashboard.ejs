@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body>
+    <%- include('partials/navbar-admin') %>
+    <main class="page admin-page">
+      <div class="container">
+        <div class="section-heading left">
+          <h2>Dashboard Admin</h2>
+          <p>Kelola dan pantau semua laporan kerusakan fasilitas sekolah</p>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat-card accent-blue">
+            <div>
+              <p>Total Laporan</p>
+              <h3><%= stats.total %></h3>
+            </div>
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 3h9l3 3v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="#1A5AFF" stroke-width="1.8" fill="none" />
+                <path d="M15 3v4h4" stroke="#1A5AFF" stroke-width="1.8" fill="none" />
+              </svg>
+            </div>
+          </div>
+          <div class="stat-card accent-yellow">
+            <div>
+              <p>Menunggu</p>
+              <h3><%= stats.menunggu %></h3>
+            </div>
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="#F59E0B" stroke-width="1.8" fill="none" />
+                <path d="M12 7v5l3 2" stroke="#F59E0B" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="stat-card accent-blue-soft">
+            <div>
+              <p>Diproses</p>
+              <h3><%= stats.diproses %></h3>
+            </div>
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="#3B82F6" stroke-width="1.8" fill="none" />
+                <path d="M12 8v4" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" />
+                <circle cx="12" cy="16" r="1" fill="#3B82F6" />
+              </svg>
+            </div>
+          </div>
+          <div class="stat-card accent-green">
+            <div>
+              <p>Selesai</p>
+              <h3><%= stats.selesai %></h3>
+            </div>
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="#22C55E" stroke-width="1.8" fill="none" />
+                <path d="M8 12l3 3 5-6" stroke="#22C55E" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <form class="filter-bar" method="GET" action="/admin">
+          <div class="search-input">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="#94A3B8" stroke-width="1.8" fill="none" />
+              <path d="M20 20l-4-4" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+            <input type="text" name="search" placeholder="Cari laporan..." value="<%= search %>" />
+          </div>
+          <div class="filter-right">
+            <div class="filter-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h16l-6 7v6l-4 2v-8z" stroke="#94A3B8" stroke-width="1.6" fill="none" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <select name="status" onchange="this.form.submit()">
+              <option <%= status === 'Semua Status' ? 'selected' : '' %>>Semua Status</option>
+              <option <%= status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
+              <option <%= status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
+              <option <%= status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
+            </select>
+          </div>
+        </form>
+
+        <div class="report-list">
+          <% if (reports.length === 0) { %>
+            <div class="card empty">Tidak ada laporan yang ditemukan.</div>
+          <% } %>
+          <% reports.forEach((report) => { %>
+            <div class="card report-card">
+              <div class="report-main">
+                <div class="report-header">
+                  <h3><%= report.category %></h3>
+                  <div class="badge-row">
+                    <span class="badge category"><%= report.category %></span>
+                    <span class="badge status <%= report.status.toLowerCase() %>"><%= report.status %></span>
+                  </div>
+                </div>
+                <p class="report-desc"><%= report.description %></p>
+                <div class="report-meta">
+                  <span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="3" y="5" width="18" height="16" rx="2" stroke="#94A3B8" stroke-width="1.6" fill="none" />
+                      <path d="M3 9h18" stroke="#94A3B8" stroke-width="1.6" />
+                    </svg>
+                    <%= formatDateId(report.createdAt) %>
+                  </span>
+                  <span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4" stroke="#94A3B8" stroke-width="1.6" fill="none" />
+                      <path d="M4 20c1.5-3.5 6-4 8-4s6.5.5 8 4" stroke="#94A3B8" stroke-width="1.6" fill="none" stroke-linecap="round" />
+                    </svg>
+                    <%= report.reporterName %>
+                  </span>
+                </div>
+              </div>
+              <div class="report-actions">
+                <a class="btn btn-outline tiny" href="/admin/reports/<%= report.id %>">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z" stroke="#1A5AFF" stroke-width="1.6" fill="none" />
+                    <circle cx="12" cy="12" r="3" stroke="#1A5AFF" stroke-width="1.6" fill="none" />
+                  </svg>
+                  Detail
+                </a>
+                <form method="POST" action="/admin/reports/<%= report.id %>/status">
+                  <select name="status" onchange="this.form.submit()">
+                    <option <%= report.status === 'Menunggu' ? 'selected' : '' %>>Menunggu</option>
+                    <option <%= report.status === 'Diproses' ? 'selected' : '' %>>Diproses</option>
+                    <option <%= report.status === 'Selesai' ? 'selected' : '' %>>Selesai</option>
+                  </select>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
